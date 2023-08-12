@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Pan Integral",
+        "description": "Pan con harina integral y mix de semillas",
+        "price": 500,
+        "code": "ALV100",
+        "stock": 10,
+        "thumbnail": [],
+        "id": 1
+    },
+    {
+        "title": "pepe",
+        "description": "Pan de campo con hierbas",
+        "price": 700,
+        "code": "ALV102",
+        "stock": 10,
+        "thumbnail": [],
+        "id": 3
+    }
+]
