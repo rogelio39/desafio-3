@@ -1,21 +1,22 @@
+
 import { promises as fs } from 'fs';
-class ProductsManager {
-    constructor() {
+
+export class ProductsManager {
+    constructor(path) {
         this.products = [];
         this.usedIds = new Set();
-        this.filePath = './productos.json';
+        this.path = path;
         this.writeProducts();
-        this.readProducts();
     }
 
     async writeProducts() {
         const datos = JSON.stringify(this.products, null, 4);
-        await fs.writeFile(this.filePath, datos, 'utf8');
+        await fs.writeFile(this.path, datos, 'utf8');
     }
 
     async readProducts() {
         try {
-            const data = JSON.parse(await fs.readFile(this.filePath, 'utf-8'));
+            const data = JSON.parse(await fs.readFile(this.path, 'utf-8'));
             this.products = data;
             this.products.forEach(producto => this.usedIds.add(producto.id));
             return this.products;
@@ -82,7 +83,8 @@ class ProductsManager {
 
     async getProducts() {
         const products = await this.readProducts();
-        console.log(products)
+        // console.log(products)
+        return products;
     }
 
     async deleteProduct(id) {
@@ -100,7 +102,7 @@ class ProductsManager {
 }
 
 
-class Products {
+export class Products {
     constructor(title, description, price, code, stock, thumbnail) {
         this.title = title,
             this.description = description,
@@ -127,32 +129,26 @@ class Products {
 
 }
 
-const productManager = new ProductsManager();
-productManager.writeProducts();
-
 const product1 = new Products('Pan Integral', 'Pan con harina integral y mix de semillas', 500, 'ALV100', 10, []);
 const product2 = new Products('Pan Blanco', 'Pan blanco con mix de semillas', 600, 'ALV101', 10, []);
 const product3 = new Products('Pan de Campo', 'Pan de campo con hierbas', 700, 'ALV102', 10, []);
 const product4 = new Products('Pan de masa madre', 'Pan de masa madre tipo hogaza', 800, 'ALV103', 10, []);
 const product5 = new Products('Pan de centeno', 'Pan de centeno con semillas de chia', 900, 'ALV104', 10, []);
-const product6 = new Products('Pan de Campo', 'Pan de campo con hierbas', 700, 'ALV102', 10, []);
 
-setTimeout(() => {
-    productManager.addProduct(product1);
-    productManager.addProduct(product2);
-    productManager.addProduct(product3);
+const productManager = new ProductsManager('./productos.json');
 
-}, 100)
+productManager.addProduct(product1);
+productManager.addProduct(product2);
+productManager.addProduct(product3);
+productManager.addProduct(product4);
+productManager.addProduct(product5);
 
 
-setTimeout(() => {
-    productManager.deleteProduct(2);
-}, 200)
-
-setTimeout(() => {
-    productManager.updatedProduct(3, 'title', 'pepe');
-}, 300)
+async function main (){
+    return await productManager.getProducts();
+    
+}
 
 
 
-
+export {main};
