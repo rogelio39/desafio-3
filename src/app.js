@@ -5,6 +5,8 @@ const PORT = 4000;
 
 const app = express();
 
+//Aqui lo que se hace es inicializar main(); y luego se lo comento, para que se cree el json con productos, pero que no se sigan creando una y otra vez, porque sino lo que sucedia es que salia todo el tiempo "[nodemon] restarting due to changes..."
+// main();
 
 async function productos() {
     return await main();

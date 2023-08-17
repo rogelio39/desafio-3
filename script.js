@@ -2,10 +2,10 @@
 import { promises as fs } from 'fs';
 
 export class ProductsManager {
-    constructor(path) {
+    constructor() {
         this.products = [];
         this.usedIds = new Set();
-        this.path = path;
+        this.path = './productos.json';
         this.writeProducts();
     }
 
@@ -135,20 +135,23 @@ const product3 = new Products('Pan de Campo', 'Pan de campo con hierbas', 700, '
 const product4 = new Products('Pan de masa madre', 'Pan de masa madre tipo hogaza', 800, 'ALV103', 10, []);
 const product5 = new Products('Pan de centeno', 'Pan de centeno con semillas de chia', 900, 'ALV104', 10, []);
 
-const productManager = new ProductsManager('./productos.json');
-
-productManager.addProduct(product1);
-productManager.addProduct(product2);
-productManager.addProduct(product3);
-productManager.addProduct(product4);
-productManager.addProduct(product5);
 
 
-async function main (){
+async function main() {
+    const productManager = new ProductsManager();
+
+    productManager.addProduct(product1);
+    productManager.addProduct(product2);
+    productManager.addProduct(product3);
+    productManager.addProduct(product4);
+    productManager.addProduct(product5);
+
     return await productManager.getProducts();
-    
+
 }
 
 
 
-export {main};
+
+
+export { main };
