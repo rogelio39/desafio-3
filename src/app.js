@@ -1,17 +1,29 @@
 import express from "express";
-import { main } from "../script.js";
+import { ProductsManager } from "./models/productsManager.js";
+import { Products } from "./models/Products.js";
 
 const PORT = 4000;
 
 const app = express();
 
-//Aqui lo que se hace es inicializar main(); y luego se lo comento, para que se cree el json con productos, pero que no se sigan creando una y otra vez, porque sino lo que sucedia es que salia todo el tiempo "[nodemon] restarting due to changes..."
-// main();
+const product1 = new Products('Pan Integral', 'Pan con harina integral y mix de semillas', 500, 'ALV100', 10, []);
+const product2 = new Products('Pan Blanco', 'Pan blanco con mix de semillas', 600, 'ALV101', 10, []);
+const product3 = new Products('Pan de Campo', 'Pan de campo con hierbas', 700, 'ALV102', 10, []);
+const product4 = new Products('Pan de masa madre', 'Pan de masa madre tipo hogaza', 800, 'ALV103', 10, []);
+const product5 = new Products('Pan de centeno', 'Pan de centeno con semillas de chia', 900, 'ALV104', 10, []);
+
 
 async function productos() {
-    return await main();
-}
+    const productManager = new ProductsManager();
 
+    productManager.addProduct(product1);
+    productManager.addProduct(product2);
+    productManager.addProduct(product3);
+    productManager.addProduct(product4);
+    productManager.addProduct(product5);
+
+    return await productManager.getProducts();
+}
 
 
 app.get('/', (req, res) => {
@@ -20,6 +32,7 @@ app.get('/', (req, res) => {
 
 app.get('/products', async (req, res) => {
     try {
+        productos();
         const products = await productos();
 
         const { limit } = req.query;
@@ -38,6 +51,7 @@ app.get('/products', async (req, res) => {
 
 app.get('/products/:id', async (req, res) => {
     try {
+        productos();
         const products = await productos();
         const prod = products.find((product) => product.id === parseInt(req.params.id));
 
