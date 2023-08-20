@@ -1,19 +1,19 @@
 [
     {
-        "title": "Pan de harina integral y mix de semillas ",
-        "description": "Pan con harina integral y mix de semillas",
-        "price": 1020,
-        "code": "ALV100",
-        "stock": 13,
+        "title": "Pan de harina de mandioca",
+        "description": "pan de harina de arro y mix de semillas",
+        "price": 1300,
+        "code": "p100",
+        "stock": 15,
         "thumbnail": [],
         "id": 1
     },
     {
         "title": "Pan de harina integral",
-        "description": "Pan con harina integral y mix de semillas con miel de abeja",
-        "price": 1020,
-        "code": "ALV101",
-        "stock": 13,
+        "description": "pan de harina integral y mix de semillas",
+        "price": 1000,
+        "code": "p101",
+        "stock": 15,
         "thumbnail": [],
         "id": 2
     }

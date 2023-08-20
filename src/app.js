@@ -6,12 +6,14 @@ const PORT = 4000;
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 const productManager = new ProductsManager(); // Crear una única instancia de ProductsManager
 
 
 function addProduct(prod) {
-    const newProduct = new Products(prod.title, prod.description, prod.price, prod.code, prod.stock, prod.thumbnail);
+    const { title, description, price, code, stock, thumbnail, id } = prod;
+    const newProduct = new Products(title, description, price, code, stock, thumbnail, id);
     productManager.addProduct(newProduct);
 
 
@@ -68,6 +70,43 @@ app.post('/products', async (req, res) => {
         res.status(500).send('error', error);
     }
 });
+
+app.put('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, description, price, code, stock, thumbnail } = req.body;
+    const products = await productManager.getProducts();
+
+    const productToUpdate = products.find(prod => prod.id === parseInt(id));
+    if (productToUpdate) {
+        productManager.updatedProduct(parseInt(id), 'title', title);
+        productManager.updatedProduct(parseInt(id), 'description', description);
+        productManager.updatedProduct(parseInt(id), 'price', price);
+        productManager.updatedProduct(parseInt(id), 'code', code);
+        productManager.updatedProduct(parseInt(id), 'stock', stock);
+        productManager.updatedProduct(parseInt(id), 'thumbnail', thumbnail);
+        res.status(200).send(`producto ${title} actualizado`);
+    } else {
+        res.status(404).send('producto no existente');
+    }
+
+})
+
+
+app.delete('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const products = await productManager.getProducts();
+
+    const productToDelete = products.find(prod => prod.id === parseInt(id));
+    if (productToDelete) {
+        productManager.deleteProduct(parseInt(id));
+        res.status(200).send(`producto eliminado`);
+    } else {
+        res.status(404).send('producto no existente');
+    }
+
+
+}
+)
 
 app.listen(PORT, () => {
     console.log(`server on port ${PORT}`);
