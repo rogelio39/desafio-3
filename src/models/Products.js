@@ -11,19 +11,20 @@ export class Products {
     }
 
     static usedIds = new Set();
+    
 
     static generadorId() {
-        if (this.idIncrement && this.usedIds.has(this.idIncrement)) {
-            this.idIncrement++;
-        } else {
-            this.idIncrement = 1;
+        let newId = this.idIncrement || 1;
+        
+        while (this.usedIds.has(newId)) {
+            newId++;
         }
-        this.usedIds.add(this.idIncrement);
-        return this.idIncrement;
+        
+        this.usedIds.add(newId);
+        this.idIncrement = newId;
+        return newId;
     }
 
 
 
-}
-
-
+    }

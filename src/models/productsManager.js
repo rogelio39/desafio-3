@@ -5,7 +5,6 @@ export class ProductsManager {
         this.products = [];
         this.usedIds = new Set();
         this.path = './productos.json';
-        this.writeProducts();
     }
 
     async writeProducts() {
@@ -31,7 +30,7 @@ export class ProductsManager {
         try {
             //verificar si existe el producto
             const existingProduct = this.products.find(prod => prod.code === product.code);
-            if (existingProduct) {
+            if (existingProduct && this.usedIds.has(existingProduct.id)) {
                 throw new Error('el producto ya existe');
             } else {
                 this.products.push(product);
@@ -47,6 +46,7 @@ export class ProductsManager {
 
     async updatedProduct(productId, propertyName, newValue) {
         try {
+            await this.writeProducts();
             const productToUpdate = this.products.find((prod) => prod.id === productId);
             if (!productToUpdate) {
                 throw new Error('producto no encontrado');
