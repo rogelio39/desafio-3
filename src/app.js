@@ -6,6 +6,8 @@ const PORT = 4000;
 
 const app = express();
 
+app.use(express.json());
+
 const product1 = new Products('Pan Integral', 'Pan con harina integral y mix de semillas', 500, 'ALV100', 10, []);
 const product2 = new Products('Pan Blanco', 'Pan blanco con mix de semillas', 600, 'ALV101', 10, []);
 const product3 = new Products('Pan de Campo', 'Pan de campo con hierbas', 700, 'ALV102', 10, []);
@@ -13,17 +15,30 @@ const product4 = new Products('Pan de masa madre', 'Pan de masa madre tipo hogaz
 const product5 = new Products('Pan de centeno', 'Pan de centeno con semillas de chia', 900, 'ALV104', 10, []);
 
 
-async function productos() {
-    const productManager = new ProductsManager();
+async function addProductos(prod) {
+    const prodManager = new ProductsManager();
 
-    productManager.addProduct(product1);
-    productManager.addProduct(product2);
-    productManager.addProduct(product3);
-    productManager.addProduct(product4);
-    productManager.addProduct(product5);
+    prodManager.addProduct(prod);
 
-    return await productManager.getProducts();
+    return await prodManager.getProducts();
+
 }
+
+async function productos() {
+    const prodManager = new ProductsManager();
+
+    prodManager.addProduct(product1);
+    prodManager.addProduct(product2);
+    prodManager.addProduct(product3);
+    prodManager.addProduct(product4);
+    prodManager.addProduct(product5);
+
+
+    return await prodManager.getProducts();
+}
+
+
+
 
 
 app.get('/', (req, res) => {
@@ -32,8 +47,9 @@ app.get('/', (req, res) => {
 
 app.get('/products', async (req, res) => {
     try {
-        productos();
-        const products = await productos();
+        await addProductos();
+        const prodManager = await productsManagerInstance();
+        const products = await prodManager.getProducts();
 
         const { limit } = req.query;
         console.log(req.query);
@@ -51,8 +67,10 @@ app.get('/products', async (req, res) => {
 
 app.get('/products/:id', async (req, res) => {
     try {
-        productos();
-        const products = await productos();
+        await addProductos();
+        const prodManager = productsManagerInstance();
+        const products = await prodManager.getProducts();
+
         const prod = products.find((product) => product.id === parseInt(req.params.id));
 
         if (prod) {
@@ -67,6 +85,19 @@ app.get('/products/:id', async (req, res) => {
 
 }
 );
+
+app.post('/products', async (req, res) => {
+    addProductos();
+    const prodManager = await productsManagerInstance();
+    const products = await prodManager.getProducts();
+    const producto = products.find(prod => prod.code === req.body.code);
+    if (producto) {
+        res.status(400).send('producto ya existente');
+    } else {
+        prodManager.addProduct(req.body);
+        res.status(200).send('Producto creado');
+    }
+})
 
 
 
