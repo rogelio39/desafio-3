@@ -1,1 +1,29 @@
-[]
+[
+    {
+        "title": "Pan de harina de mandioca",
+        "description": "pan de harina de arro y mix de semillas",
+        "price": 1300,
+        "code": "p100",
+        "stock": 15,
+        "thumbnail": [],
+        "id": 1
+    },
+    {
+        "title": "Pan de harina integral",
+        "description": "pan de harina integral y mix de semillas",
+        "price": 1000,
+        "code": "p101",
+        "stock": 15,
+        "thumbnail": [],
+        "id": 2
+    },
+    {
+        "title": "Pan de harina de maiz",
+        "description": "pan de harina de maiz y mix de especias",
+        "price": 1500,
+        "code": "p102",
+        "stock": 15,
+        "thumbnail": [],
+        "id": 3
+    }
+]
