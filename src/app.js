@@ -47,20 +47,22 @@ app.get('/', (req, res) => {
 
 app.get('/products', async (req, res) => {
     try {
-        await addProductos();
-        const prodManager = await productsManagerInstance();
-        const products = await prodManager.getProducts();
-
+        productos();
+        const products = await products();
+        addProductos();
+        const products2 = await addProductos();
         const { limit } = req.query;
         console.log(req.query);
         if (limit) {
             const prod = products.slice(0, limit);
             res.send(prod);
         } else {
-            res.send(products);
+            res.status(200).send(products);
+            console.log(products)
+            console.log(products2);
         }
     } catch (error) {
-        res.status(500).send('error al cargar productos', error);
+        res.status(404).send('error al cargar productos');
     }
 
 })
