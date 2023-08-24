@@ -30,7 +30,7 @@ export class ProductsManager {
         try {
             //verificar si existe el producto
             const existingProduct = this.products.find(prod => prod.code === product.code);
-            if (existingProduct && this.usedIds.has(existingProduct.id)) {
+            if (existingProduct && this.usedIds.has(product.id)) {
                 throw new Error('el producto ya existe');
             } else {
                 this.products.push(product);
@@ -46,7 +46,6 @@ export class ProductsManager {
 
     async updatedProduct(productId, propertyName, newValue) {
         try {
-            await this.writeProducts();
             const productToUpdate = this.products.find((prod) => prod.id === productId);
             if (!productToUpdate) {
                 throw new Error('producto no encontrado');
@@ -58,8 +57,6 @@ export class ProductsManager {
                     this.products[index] = productToUpdate;
                     const productos = JSON.stringify(this.products, null, 4)
                     await this.writeProducts();
-
-
                 }
             }
         } catch (error) {
@@ -76,8 +73,7 @@ export class ProductsManager {
             console.log('Producto no encontrado');
             return null;
         }
-
-
+        return productId;
     }
 
     async getProducts() {
@@ -99,6 +95,9 @@ export class ProductsManager {
         }
     }
 }
+
+
+
 
 
 
