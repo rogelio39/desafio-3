@@ -1,29 +1,65 @@
 [
     {
-        "title": "Pan de harina de mandioca",
-        "description": "pan de harina de arro y mix de semillas",
-        "price": 1300,
-        "code": "p100",
-        "stock": 15,
+        "title": "pan integral de molde",
+        "description": "pan integral con mix de especias",
+        "price": 500,
+        "code": "ep2",
+        "stock": 10,
         "thumbnail": [],
-        "id": 1
+        "id": 169
     },
     {
-        "title": "Pan de harina integral",
-        "description": "pan de harina integral y mix de semillas",
-        "price": 1000,
-        "code": "p101",
-        "stock": 15,
+        "title": "pan integral",
+        "description": "pan integral con mix de semillas",
+        "price": 500,
+        "code": "erp2",
+        "stock": 10,
         "thumbnail": [],
-        "id": 2
+        "id": 170
     },
     {
-        "title": "Pan de harina de maiz",
-        "description": "pan de harina de maiz y mix de especias",
-        "price": 1500,
-        "code": "p102",
-        "stock": 15,
+        "title": "pan integral",
+        "description": "pan integral con mix de semillas",
+        "price": 500,
+        "code": "errrp2",
+        "stock": 10,
         "thumbnail": [],
-        "id": 3
+        "id": 171
+    },
+    {
+        "title": "pan integral",
+        "description": "pan integral con mix de semillas",
+        "price": 500,
+        "code": "errrpe2",
+        "stock": 10,
+        "thumbnail": [],
+        "id": 16928473
+    },
+    {
+        "title": "pan integral",
+        "description": "pan integral con mix de semillas",
+        "price": 500,
+        "code": "errrprre2",
+        "stock": 10,
+        "thumbnail": [],
+        "id": 1692849380769
+    },
+    {
+        "title": "pan integral",
+        "description": "pan integral con mix de semillas",
+        "price": 500,
+        "code": "errrprrrre2",
+        "stock": 10,
+        "thumbnail": [],
+        "id": 16928494340
+    },
+    {
+        "title": "pan integral",
+        "description": "pan integral con mix de semillas",
+        "price": 500,
+        "code": "rrrre2",
+        "stock": 10,
+        "thumbnail": [],
+        "id": 1692849507
     }
 ]
