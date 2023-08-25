@@ -1,7 +1,7 @@
 [
     {
-        "title": "pan integral de molde",
-        "description": "pan integral con mix de especias",
+        "title": "pan ",
+        "description": "pan ",
         "price": 500,
         "code": "ep2",
         "stock": 10,
@@ -9,10 +9,10 @@
         "id": 169
     },
     {
-        "title": "pan integral",
-        "description": "pan integral con mix de semillas",
+        "title": "pan ñam ñam",
+        "description": "pan ñam ñam ",
         "price": 500,
-        "code": "erp2",
+        "code": "ep2",
         "stock": 10,
         "thumbnail": [],
         "id": 170
@@ -25,41 +25,5 @@
         "stock": 10,
         "thumbnail": [],
         "id": 171
-    },
-    {
-        "title": "pan integral",
-        "description": "pan integral con mix de semillas",
-        "price": 500,
-        "code": "errrpe2",
-        "stock": 10,
-        "thumbnail": [],
-        "id": 16928473
-    },
-    {
-        "title": "pan integral",
-        "description": "pan integral con mix de semillas",
-        "price": 500,
-        "code": "errrprre2",
-        "stock": 10,
-        "thumbnail": [],
-        "id": 1692849380769
-    },
-    {
-        "title": "pan integral",
-        "description": "pan integral con mix de semillas",
-        "price": 500,
-        "code": "errrprrrre2",
-        "stock": 10,
-        "thumbnail": [],
-        "id": 16928494340
-    },
-    {
-        "title": "pan integral",
-        "description": "pan integral con mix de semillas",
-        "price": 500,
-        "code": "rrrre2",
-        "stock": 10,
-        "thumbnail": [],
-        "id": 1692849507
     }
 ]
