@@ -73,12 +73,12 @@ prodsRouter.put('/:id', async (req, res) => {
 
     const productToUpdate = products.find(prod => prod.id === parseInt(id));
     if (productToUpdate) {
-        productManager.updatedProduct(parseInt(id), 'title', title);
-        productManager.updatedProduct(parseInt(id), 'description', description);
-        productManager.updatedProduct(parseInt(id), 'price', price);
-        productManager.updatedProduct(parseInt(id), 'code', code);
-        productManager.updatedProduct(parseInt(id), 'stock', stock);
-        productManager.updatedProduct(parseInt(id), 'thumbnail', thumbnail);
+        await productManager.updatedProduct(parseInt(id), 'title', title);
+        await productManager.updatedProduct(parseInt(id), 'description', description);
+        await productManager.updatedProduct(parseInt(id), 'price', price);
+        await productManager.updatedProduct(parseInt(id), 'code', code);
+        await productManager.updatedProduct(parseInt(id), 'stock', stock);
+        await productManager.updatedProduct(parseInt(id), 'thumbnail', thumbnail);
         res.status(200).send(`producto ${title} actualizado`);
     } else {
         res.status(404).send('producto no existente');
