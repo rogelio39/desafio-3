@@ -37,16 +37,17 @@ cartRouter.get('/:cid', async (req, res) => {
 
 cartRouter.post('/:cid/product/:pid', async (req, res) => {
     try {
-        const {id} = req.body;
+        const {pid} = req.params;
+        const newProduct = {id: pid, quantity: 1};
         const productsBaseData = await productManager.getProducts();
-        const idProduct = productsBaseData.find(prod => prod.id === parseInt(id));
+        const idProduct = productsBaseData.find(prod => prod.id === parseInt(pid));
         const products = await cart.getProducts();
         const product = products.find(prod => prod.id === idProduct.id);
         if (product) {
             await cart.addProduct(product);
             res.status(400).send(`cantidad de producto actualizado a ${product.quantity}`);
         } else {
-            await cart.addProduct(req.body);
+            await cart.addProduct(newProduct);
             res.status(200).send('producto creado con exito');
         }
     } catch (error) {
