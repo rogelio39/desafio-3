@@ -4,8 +4,11 @@ import { engine } from "express-handlebars";
 import path from 'path';
 import multer from "multer";
 
-//rutas
+//rutas productos
 import prodsRouter from "./routes/products.routes.js";
+
+//rutas cart
+import cartRouter from "./routes/cart.routes.js";
 
 const PORT = 4000;
 
@@ -26,9 +29,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-//routes
+//routes productos
 app.use('/api/products', prodsRouter);
+
+//ruta para imagenes
 app.use('/static', express.static(path.join(__dirname, '/public')));//aqui se deben concatenar las rutas.
+
+//routes cart
+app.use('/api/carts', cartRouter);
 
 
 app.get('/', (req, res) => {
@@ -39,10 +47,6 @@ app.get('/', (req, res) => {
 app.post('/upload', upload.single('product'), (req, res) =>{
     res.status(200).send('imagen cargada');
 })
-
-
-
-
 
 app.listen(PORT, () => {
     console.log(`server on port ${PORT}`);

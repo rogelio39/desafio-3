@@ -1,0 +1,13 @@
+{
+    "idCart": 1,
+    "productsCart": [
+        {
+            "id": 169300508758,
+            "quantity": 4
+        },
+        {
+            "id": 169300507114,
+            "quantity": 4
+        }
+    ]
+}
