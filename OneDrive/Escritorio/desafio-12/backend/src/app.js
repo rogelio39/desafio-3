@@ -17,7 +17,10 @@ import { swaggerOptions } from './config/swagger.js';
 import cluster from 'cluster';
 import { cpus } from 'os';
 
-
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import App from '../../frontend/src/App.jsx';
 
 
 
@@ -25,12 +28,26 @@ let PORT = 3000;
 
 const app = express();
 
-// Middleware para manejar las cabeceras CORS
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://proyecto-frontend-udcd.onrender.com');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
+app.use('*', (req, res) => {
+    const context = {};
+    const appHtml = ReactDOMServer.renderToString(
+        <StaticRouter location={req.url} context={context}>
+            <App />
+        </StaticRouter>
+    );
+
+    res.send(
+        `<!DOCTYPE html>
+       <html lang="en">
+         <head>
+           <!-- head content -->
+         </head>
+         <body>
+           <div id="root">${appHtml}</div>
+           <script src="/path/to/your/bundle.js"></script>
+         </body>
+       </html>`
+    );
 });
 
 const specs = swaggerJSDoc(swaggerOptions);
