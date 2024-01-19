@@ -1,0 +1,6 @@
+.title{
+    font-size: x-large;
+    border: black 3px solid;
+    border-radius: 10px;
+    background: linear-gradient(to right, #6d69d9, #8c36b7, #051c55d8);
+}
