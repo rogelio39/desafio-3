@@ -1,0 +1,36 @@
+USUARIO USER para rutas normales
+
+{
+    "email":"roge@rogesuleta.com",
+    "password": "1234"
+}
+
+
+user admin para ruta de creacion de productos
+
+{
+    "email":"roge@coder.com",
+    "password": "1234"
+}
+
+
+
+
+CID 
+
+65453a5ea76a781f689a95ca
+
+
+id de products por si necesita para probar la ruta de update, delete, etc.
+
+659ca607ec8d7afbb9ecec6d
+
+65a067f4c1c7abf9100019f7
+
+65a068bd0a4aac1189b6fd4a
+
+65a17671400321ab258792b1
+
+
+
+
